@@ -29,7 +29,7 @@ namespace MainGame.Turns
 
             if (value == 0)
             {
-                value = CheckIntValue(first.ArmyIndex, second.ArmyIndex);
+                value = CheckIntValue(second.ArmyIndex, first.ArmyIndex);
             }
 
             return value;

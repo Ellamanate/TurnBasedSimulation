@@ -28,9 +28,9 @@ namespace MainGame.Turns.Visualization
             Data = data;
 
             _background.color = data.Color;
-            _name.text = data.Name;
-            _initiative.text = data.Initiative.ToString();
-            _speed.text = data.Speed.ToString();
+            _name.text = string.Format("Существо: {0}", data.Name);
+            _initiative.text = string.Format("Инициатива - {0}", data.Initiative);
+            _speed.text = string.Format("Скорость - {0}", data.Speed);
         }
     }
 }

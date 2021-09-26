@@ -19,7 +19,7 @@ namespace MainGame
         private Button _killNextUnit;
 
         [SerializeField]
-        private TurnsVisualization _visualization;
+        private TurnsVisualizer _visualizer;
 
         [SerializeField]
         private int _maxTurns;
@@ -28,12 +28,11 @@ namespace MainGame
 
         private void Awake()
         {
-            _turnsSystem = new TurnsSystem(_unitTurns, _maxTurns);
+            _turnsSystem = new VisualizableTurnsSystem(_visualizer, _unitTurns, _maxTurns);
         }
 
         private void Start()
         {
-            _visualization.SetTurnsSystem(_turnsSystem);
             _turnsSystem.FillQueue();
         }
 

@@ -717,6 +717,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _turnPrefab: {fileID: 2088705035269678785, guid: ce0f7bcc26e2f4a4c81795a283c7cee8, type: 3}
+  _endTurnPrefab: {fileID: 7249457550527514900, guid: ca27b448abaa07048ba7c6c8f7c1b5fe, type: 3}
   _parent: {fileID: 1590795002}
   _pool: {fileID: 1058930568}
 --- !u!114 &1745363176
@@ -748,8 +749,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a2449671b72019146a396b05c1b66a6c, type: 2}
   _nextTurn: {fileID: 1922696970}
   _killNextUnit: {fileID: 1680821119}
-  _visualization: {fileID: 1745363175}
-  _maxTurns: 10
+  _visualizer: {fileID: 1745363175}
+  _maxTurns: 20
 --- !u!1 &1922696968
 GameObject:
   m_ObjectHideFlags: 0
