@@ -2,37 +2,32 @@
 using System.Linq;
 using System.Collections.Generic;
 
-using UnityEngine;
-
 using MainGame.Units;
 
 namespace MainGame.Turns
 {
-    public class TurnsSystem : MonoBehaviour
+    public class TurnsSystem
     {
         public event Action OnMoveNext;
         public event Action<UnitData> OnAdded;
         public event Action<UnitData> OnRemove;
 
-        [SerializeField] 
-        private UnitData[] _unitTurns;
+        private List<UnitData> _availableTurns;
+        private List<UnitData> _generalQueue;
+        private List<UnitData> _turnQueue;
 
-        [SerializeField]
         private int _maxTurns;
-
-        private List<UnitData> _availableTurns = new List<UnitData>();
-        private List<UnitData> _generalQueue = new List<UnitData>();
-
         private int _turnNumber;
-        private int _currentTurnIndex;
 
         public UnitData CurrentTurn => _generalQueue.FirstOrDefault();
 
-        private void Awake()
+        public TurnsSystem(UnitData[] unitTurns, int maxTurns)
         {
-            _availableTurns.AddRange(Sort(_unitTurns, _turnNumber));
+            _maxTurns = maxTurns;
 
-            FillQueue();
+            _availableTurns = new List<UnitData>(Sort(unitTurns, GetPriority()));
+            _turnQueue = new List<UnitData>(_availableTurns);
+            _generalQueue = new List<UnitData>();
         }
 
         public void GetNext()
@@ -52,8 +47,7 @@ namespace MainGame.Turns
 
             var unit = _generalQueue[index];
 
-            _currentTurnIndex = _currentTurnIndex != 0 ? _currentTurnIndex - 1 : _currentTurnIndex;
-
+            _turnQueue.Remove(unit);
             _availableTurns.Remove(unit);
             _generalQueue.RemoveAll(x => x == unit);
 
@@ -62,34 +56,35 @@ namespace MainGame.Turns
             FillQueue();
         }
 
-        private void FillQueue()
+        public void FillQueue()
         {
             if (_availableTurns.Count == 0) return;
 
             while (_generalQueue.Count < _maxTurns)
             {
-                var turn = _availableTurns[_currentTurnIndex];
-
-                _generalQueue.Add(turn);
-
-                if (_currentTurnIndex >= _availableTurns.Count - 1)
+                if (_turnQueue.Count == 0)
                 {
                     _turnNumber++;
-                    _currentTurnIndex = 0;
-                    _availableTurns = new List<UnitData>(Sort(_availableTurns.ToArray(), _turnNumber));
+                    _turnQueue = new List<UnitData>(Sort(_availableTurns.ToArray(), GetPriority()));
                 }
-                else
-                {
-                    _currentTurnIndex++;
-                }
+
+                var turn = _turnQueue.First();
+                _turnQueue.RemoveAt(0);
+
+                _generalQueue.Add(turn);
 
                 OnAdded?.Invoke(turn);
             }
         }
 
-        protected virtual UnitData[] Sort(UnitData[] turns, int turnNumber)
+        protected virtual ArmyType GetPriority()
         {
-            return turns;
+            return _turnNumber % 2 == 0 ? ArmyType.Red : ArmyType.Blue;
+        }
+
+        private UnitData[] Sort(UnitData[] turns, ArmyType priority)
+        {
+            return turns.OrderBy(x => x, new UnitsComparer(priority)).ToArray();
         }
     }
 }

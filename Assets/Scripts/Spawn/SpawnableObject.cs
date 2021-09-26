@@ -11,9 +11,9 @@ namespace Modules.Spawn
 
         public void Despawn()
         {
-            OnDespawn?.Invoke(this);
-
             WhenDespawn();
+
+            OnDespawn?.Invoke(this);
         }
 
         public virtual void Dispose()
@@ -24,5 +24,10 @@ namespace Modules.Spawn
         }
 
         protected virtual void WhenDespawn() { }
+
+        private void OnDestroy()
+        {
+            Dispose();
+        }
     }
 }

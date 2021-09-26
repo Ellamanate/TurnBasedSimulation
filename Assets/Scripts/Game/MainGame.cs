@@ -2,11 +2,16 @@
 using UnityEngine.UI;
 
 using MainGame.Turns;
+using MainGame.Units;
+using MainGame.Turns.Visualization;
 
 namespace MainGame
 {
     public class MainGame : MonoBehaviour
     {
+        [SerializeField]
+        private UnitData[] _unitTurns;
+
         [SerializeField]
         private Button _nextTurn;
 
@@ -14,7 +19,23 @@ namespace MainGame
         private Button _killNextUnit;
 
         [SerializeField]
+        private TurnsVisualization _visualization;
+
+        [SerializeField]
+        private int _maxTurns;
+
         private TurnsSystem _turnsSystem;
+
+        private void Awake()
+        {
+            _turnsSystem = new TurnsSystem(_unitTurns, _maxTurns);
+        }
+
+        private void Start()
+        {
+            _visualization.SetTurnsSystem(_turnsSystem);
+            _turnsSystem.FillQueue();
+        }
 
         private void OnEnable()
         {

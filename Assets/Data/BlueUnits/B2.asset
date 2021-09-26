@@ -10,7 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e4855d07360b154ba264b75e381f87c, type: 3}
-  m_Name: R2
+  m_Name: B2
   m_EditorClassIdentifier: 
+  _armyType: 1
+  _color: {r: 0.14489143, g: 0.37330058, b: 0.8301887, a: 1}
+  _name: "\u04212"
+  _armyIndex: 2
   _initiative: 8
-  _speed: 4
+  _speed: 5

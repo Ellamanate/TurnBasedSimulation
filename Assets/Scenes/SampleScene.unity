@@ -681,7 +681,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1745363174}
-  - component: {fileID: 1745363173}
   - component: {fileID: 1745363175}
   - component: {fileID: 1745363176}
   m_Layer: 0
@@ -691,25 +690,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1745363173
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1745363172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87aa1454c8ae7544f91914c1386dc4a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _unitTurns:
-  - {fileID: 11400000, guid: 6e977c88fe26aa240a2cfbc1649c0cd4, type: 2}
-  - {fileID: 11400000, guid: 9e1111738c770174782bb9cfedd8bbf0, type: 2}
-  - {fileID: 11400000, guid: dea605198bc23424397b5ec60eefcf2b, type: 2}
-  - {fileID: 11400000, guid: 0a26b8299da6ade4b9853ec35e03c284, type: 2}
-  _maxTurns: 10
-  _generalQueue: []
 --- !u!4 &1745363174
 Transform:
   m_ObjectHideFlags: 0
@@ -736,11 +716,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aae5cb0fe5caa13428fc0bb0ef19c06d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _turnsSystem: {fileID: 1745363173}
+  _turnPrefab: {fileID: 2088705035269678785, guid: ce0f7bcc26e2f4a4c81795a283c7cee8, type: 3}
   _parent: {fileID: 1590795002}
   _pool: {fileID: 1058930568}
-  _turnPrefab: {fileID: 2088705035269678785, guid: ce0f7bcc26e2f4a4c81795a283c7cee8, type: 3}
-  _turns: []
 --- !u!114 &1745363176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -753,9 +731,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0465b86facec3544a7e6032aea50b57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _unitTurns:
+  - {fileID: 11400000, guid: 6e977c88fe26aa240a2cfbc1649c0cd4, type: 2}
+  - {fileID: 11400000, guid: 9e1111738c770174782bb9cfedd8bbf0, type: 2}
+  - {fileID: 11400000, guid: dea605198bc23424397b5ec60eefcf2b, type: 2}
+  - {fileID: 11400000, guid: 0a26b8299da6ade4b9853ec35e03c284, type: 2}
+  - {fileID: 11400000, guid: 9656d52e00368c947847d969c76f97c0, type: 2}
+  - {fileID: 11400000, guid: 51ad6f36b93ddd84988ed9741241ee1b, type: 2}
+  - {fileID: 11400000, guid: 834fd79ea2b3ea04b91d9a19f21433d1, type: 2}
+  - {fileID: 11400000, guid: 1ec86085e7585ec4692e6fef043ed5f2, type: 2}
+  - {fileID: 11400000, guid: 71014ec82f226cd4a953d4bc2fa000ee, type: 2}
+  - {fileID: 11400000, guid: 841c983e7eeeeb34abd521beaeebed80, type: 2}
+  - {fileID: 11400000, guid: e9e1715ce4390e0489b1d2a7bdb9c65c, type: 2}
+  - {fileID: 11400000, guid: 5701760dd9800f34398ea91b5f535381, type: 2}
+  - {fileID: 11400000, guid: f3b0607cb8c7b9e489a96cd5446dbf71, type: 2}
+  - {fileID: 11400000, guid: a2449671b72019146a396b05c1b66a6c, type: 2}
   _nextTurn: {fileID: 1922696970}
   _killNextUnit: {fileID: 1680821119}
-  _turnsSystem: {fileID: 1745363173}
+  _visualization: {fileID: 1745363175}
+  _maxTurns: 10
 --- !u!1 &1922696968
 GameObject:
   m_ObjectHideFlags: 0

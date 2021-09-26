@@ -10,7 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e4855d07360b154ba264b75e381f87c, type: 3}
-  m_Name: R4
+  m_Name: R6
   m_EditorClassIdentifier: 
-  _initiative: 4
-  _speed: 3
+  _color: {r: 0.8396226, g: 0.25743148, b: 0.25743148, a: 1}
+  _name: "\u041A6"
+  _armyIndex: 6
+  _initiative: 3
+  _speed: 4

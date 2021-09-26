@@ -10,6 +10,12 @@ namespace MainGame.Turns.Visualization
     public class TurnUI : SpawnableObject
     {
         [SerializeField]
+        private Image _background;
+
+        [SerializeField]
+        private Text _name;
+
+        [SerializeField]
         private Text _initiative;        
         
         [SerializeField]
@@ -21,6 +27,8 @@ namespace MainGame.Turns.Visualization
         {
             Data = data;
 
+            _background.color = data.Color;
+            _name.text = data.Name;
             _initiative.text = data.Initiative.ToString();
             _speed.text = data.Speed.ToString();
         }

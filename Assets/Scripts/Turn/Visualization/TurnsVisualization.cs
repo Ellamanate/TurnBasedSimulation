@@ -12,9 +12,6 @@ namespace MainGame.Turns.Visualization
     public class TurnsVisualization : MonoBehaviour
     {
         [SerializeField]
-        private TurnsSystem _turnsSystem;
-
-        [SerializeField]
         private TurnUI _turnPrefab;
 
         [SerializeField]
@@ -23,7 +20,9 @@ namespace MainGame.Turns.Visualization
         [SerializeField]
         private Transform _pool;
 
+        private TurnsSystem _turnsSystem;
         private DefaultPooler<TurnUI, UnitData> _pooler;
+
         private List<TurnUI> _turns = new List<TurnUI>();
 
         private void Awake()
@@ -33,16 +32,41 @@ namespace MainGame.Turns.Visualization
 
         private void OnEnable()
         {
-            _turnsSystem.OnMoveNext += MoveNext;
-            _turnsSystem.OnAdded += AddTurn;
-            _turnsSystem.OnRemove += RemoveTurn;
+            Subscribe();
         }
 
         private void OnDisable()
         {
-            _turnsSystem.OnMoveNext -= MoveNext;
-            _turnsSystem.OnAdded -= AddTurn;
-            _turnsSystem.OnRemove -= RemoveTurn;
+            Unsubscribe();
+        }
+
+        public void SetTurnsSystem(TurnsSystem turnsSystem)
+        {
+            Unsubscribe();
+
+            _turnsSystem = turnsSystem;
+
+            Subscribe();
+        }
+
+        private void Subscribe()
+        {
+            if (_turnsSystem != null)
+            {
+                _turnsSystem.OnMoveNext += MoveNext;
+                _turnsSystem.OnAdded += AddTurn;
+                _turnsSystem.OnRemove += RemoveTurn;
+            }
+        }
+
+        private void Unsubscribe()
+        {
+            if (_turnsSystem != null)
+            {
+                _turnsSystem.OnMoveNext -= MoveNext;
+                _turnsSystem.OnAdded -= AddTurn;
+                _turnsSystem.OnRemove -= RemoveTurn;
+            }
         }
 
         private void MoveNext()

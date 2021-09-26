@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e4855d07360b154ba264b75e381f87c, type: 3}
   m_Name: R1
   m_EditorClassIdentifier: 
+  _color: {r: 0.8396226, g: 0.25743148, b: 0.25743148, a: 1}
+  _name: "\u041A1"
+  _armyIndex: 1
   _initiative: 8
   _speed: 4
